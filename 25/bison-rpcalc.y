@@ -1,4 +1,17 @@
 
+/* bison-rpcalc example from (info bison) 2.1.1 */
+
+%{
+  #define YYSTYPE double
+  #include <math.h>
+  int yylex (void);
+  void yyerror (char const *);
+%}
+
+%token NUM
+
+%% /* Grammar, semantics */
+
 input:
   /* empty */
 | input line
