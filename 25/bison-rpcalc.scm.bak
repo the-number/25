@@ -1,7 +1,0 @@
-
-;;; --- syntax rules
-(<input>   ()
-           (<input> <line>))
-
-(<line>    (#\newline)
-           (<exp> #\newline) : (format #t "~a~%" $1))
