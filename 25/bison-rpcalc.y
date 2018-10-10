@@ -31,4 +31,29 @@ exp:
 | exp exp '^'    { $$ = pow ($1,$2); }
 | exp 'n'        { $$ = -$1; }
 ;
-%%
+
+%% /* Lexer */
+
+#include <ctype.h>
+
+int
+yylex (void)
+{
+  int c;
+
+  while ( (c=getchar()) == ' ' || c == '\t' )
+    {
+      continue;
+    }
+  if ( c == '.' || isdigit (c) )
+    {
+      unget (c, stdin);
+      scanf ("%lf", &yylval);
+      return NUM;
+    }
+  if ( c == EOF )
+    {
+      return 0;
+    }
+  return c;
+}
