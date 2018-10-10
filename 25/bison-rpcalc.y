@@ -66,3 +66,12 @@ main (void)
 {
   return yyparse ();
 }
+
+/* (info bison 2.1.6) in error */
+
+void
+yyerror (char const *s)
+{
+  fprintf (stderr, "%s\n", s);
+}
+
