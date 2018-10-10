@@ -35,3 +35,19 @@
 
 
 ))
+
+;;; Lexer
+
+(define (make-lexer e)
+ (lambda ()
+   (define (a b)
+     (cond ((or (char=? b #\space) (char=? b #\tab))
+            (a (read-char)))                     ; skip spaces
+           ((char-numeric? b)
+            (unread-char b)
+            (make-lexical-token 'NUM #f (read))) ; number
+           ((eof-object? b)
+            (make-lexical-token 0 #f #f))        ; eof
+           (else
+            (make-lexical-token b #f #f)))       ; operator, with trust or hope
+   (a (read-char))))
