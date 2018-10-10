@@ -1,3 +1,16 @@
+#!
+  2018 (c) Gunter Liszewski
+
+  info bison 2.1.1
+  calc-scm/calc.scm both as model for this
+
+!#
+
+;;; bison-rpcalc
+
+(define bison-rpcalc-parser
+  (lalr-parser
+
 
 /* bison-rpcalc example from (info bison) 2.1.1 */
 
@@ -20,3 +33,5 @@
            (<exp> <exp> #\^) : (expt $1 $2)
            (<exp> #\-)       : (- $1))
 
+
+))
