@@ -34,6 +34,7 @@ exp:
 
 %% /* Lexer */
 
+#include <stdio.h>
 #include <ctype.h>
 
 int
@@ -47,7 +48,7 @@ yylex (void)
     }
   if ( c == '.' || isdigit (c) )
     {
-      unget (c, stdin);
+      ungetc (c, stdin);
       scanf ("%lf", &yylval);
       return NUM;
     }
