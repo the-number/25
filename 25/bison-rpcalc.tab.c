@@ -65,11 +65,12 @@
 #line 4 "bison-rpcalc.y" /* yacc.c:339  */
 
   #define YYSTYPE double
+  #include <stdio.h>
   #include <math.h>
   int yylex (void);
   void yyerror (char const *);
 
-#line 73 "bison-rpcalc.tab.c" /* yacc.c:339  */
+#line 74 "bison-rpcalc.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -121,7 +122,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 125 "bison-rpcalc.tab.c" /* yacc.c:358  */
+#line 126 "bison-rpcalc.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -418,8 +419,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    15,    15,    17,    21,    22,    26,    27,    28,    29,
-      30,    31,    32
+       0,    16,    16,    18,    22,    23,    27,    28,    29,    30,
+      31,    32,    33
 };
 #endif
 
@@ -1193,55 +1194,55 @@ yyreduce:
   switch (yyn)
     {
         case 5:
-#line 22 "bison-rpcalc.y" /* yacc.c:1646  */
+#line 23 "bison-rpcalc.y" /* yacc.c:1646  */
     { printf ("%.10g\n", (yyvsp[-1])); }
-#line 1199 "bison-rpcalc.tab.c" /* yacc.c:1646  */
+#line 1200 "bison-rpcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 26 "bison-rpcalc.y" /* yacc.c:1646  */
+#line 27 "bison-rpcalc.y" /* yacc.c:1646  */
     { (yyval) = (yyvsp[0]); }
-#line 1205 "bison-rpcalc.tab.c" /* yacc.c:1646  */
+#line 1206 "bison-rpcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 27 "bison-rpcalc.y" /* yacc.c:1646  */
+#line 28 "bison-rpcalc.y" /* yacc.c:1646  */
     { (yyval) = (yyvsp[-2]) + (yyvsp[-1]); }
-#line 1211 "bison-rpcalc.tab.c" /* yacc.c:1646  */
+#line 1212 "bison-rpcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 28 "bison-rpcalc.y" /* yacc.c:1646  */
+#line 29 "bison-rpcalc.y" /* yacc.c:1646  */
     { (yyval) = (yyvsp[-2]) - (yyvsp[-1]); }
-#line 1217 "bison-rpcalc.tab.c" /* yacc.c:1646  */
+#line 1218 "bison-rpcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 29 "bison-rpcalc.y" /* yacc.c:1646  */
+#line 30 "bison-rpcalc.y" /* yacc.c:1646  */
     { (yyval) = (yyvsp[-2]) * (yyvsp[-1]); }
-#line 1223 "bison-rpcalc.tab.c" /* yacc.c:1646  */
+#line 1224 "bison-rpcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 30 "bison-rpcalc.y" /* yacc.c:1646  */
+#line 31 "bison-rpcalc.y" /* yacc.c:1646  */
     { (yyval) = (yyvsp[-2]) / (yyvsp[-1]); }
-#line 1229 "bison-rpcalc.tab.c" /* yacc.c:1646  */
+#line 1230 "bison-rpcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 31 "bison-rpcalc.y" /* yacc.c:1646  */
+#line 32 "bison-rpcalc.y" /* yacc.c:1646  */
     { (yyval) = pow ((yyvsp[-2]),(yyvsp[-1])); }
-#line 1235 "bison-rpcalc.tab.c" /* yacc.c:1646  */
+#line 1236 "bison-rpcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 32 "bison-rpcalc.y" /* yacc.c:1646  */
+#line 33 "bison-rpcalc.y" /* yacc.c:1646  */
     { (yyval) = -(yyvsp[-1]); }
-#line 1241 "bison-rpcalc.tab.c" /* yacc.c:1646  */
+#line 1242 "bison-rpcalc.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1245 "bison-rpcalc.tab.c" /* yacc.c:1646  */
+#line 1246 "bison-rpcalc.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1469,10 +1470,9 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 35 "bison-rpcalc.y" /* yacc.c:1906  */
+#line 36 "bison-rpcalc.y" /* yacc.c:1906  */
  /* Lexer */
 
-#include <stdio.h>
 #include <ctype.h>
 
 int

@@ -3,6 +3,7 @@
 
 %{
   #define YYSTYPE double
+  #include <stdio.h>
   #include <math.h>
   int yylex (void);
   void yyerror (char const *);
@@ -34,7 +35,6 @@ exp:
 
 %% /* Lexer */
 
-#include <stdio.h>
 #include <ctype.h>
 
 int
