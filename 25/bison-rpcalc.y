@@ -57,3 +57,12 @@ yylex (void)
     }
   return c;
 }
+
+
+/* (info bison 2.1.4) The controller */
+
+int
+main (void)
+{
+  return yyparse ();
+}
