@@ -1,11 +1,11 @@
 #!
-  bison-rpcalc example from (info bison) 2.1.1 
+  bison-rpcalc example from (info bison 2.1.1) 
 
   2018 (c) Gunter Liszewski
 
   models for this, for example:
    info bison 2.1.1
-   calc-scm/calc.scm
+   lalr-scm/calc.scm
    dynamo.iro.umontreal.ca/wiki/index.php/Lalr-example
 
 !#
@@ -14,9 +14,11 @@
   (lalr-parser
 
 ;;; --- token
+
 (NUM #{\xa;}# + - * / ^ n)
 
 ;;; --- grammar, semantics
+
 (<input>   ()
            (<input> <line>))
 
@@ -31,7 +33,7 @@
            (<exp> <exp> ^)  : (expt $1 $2)
            (<exp> n)        : (- $1))))
 
-;;; Lexer
+;;; --- lexer
 
 (define (make-lexer e)
  (lambda ()
@@ -47,3 +49,7 @@
              (string->symbol (string b))
              #f #f))))                           ; operator, with trust or hope
    (a (read-char))))
+
+;;; --- errors
+
+;;; --- control
