@@ -45,9 +45,7 @@
             (unread-char b)
             (make-lexical-token 'NUM #f (read))) ; number
            (else
-            (make-lexical-token
-             (string->symbol (string b))
-             #f #f))))                           ; operator, with trust or hope
+             (string->symbol (string b)))))      ; operator, with trust or hope
    (a (read-char))))
 
 ;;; --- errors
