@@ -11,3 +11,8 @@ bison-rpcalc.tab.o: bison-rpcalc.tab.c
 
 bison-rpcalc.tab.c: bison-rpcalc.y
 	$(YACC) $<
+
+clean:
+	@rm -f bison-rpcalc.tab.c bison-rpcalc.o bison-rpcalc *.bak *~
+
+.PHONY: clean
