@@ -36,12 +36,12 @@
 (define (make-lexer e)
  (lambda ()
    (define (a b)
-     (cond ((or (char=? b #\space) (char=? b #\tab))
+     (cond ((eof-object? b) '*eoi*)              ; eof
+           ((or (char=? b #\space) (char=? b #\tab))
             (a (read-char)))                     ; skip spaces
            ((or (char-numeric? b) (char=? b #\.))
             (unread-char b)
             (make-lexical-token 'NUM #f (read))) ; number
-           ((eof-object? b) '*eoi*)              ; eof
            (else
             (make-lexical-token
              (string->symbol (string b))
