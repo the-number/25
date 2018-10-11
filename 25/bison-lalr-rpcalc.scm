@@ -1,4 +1,5 @@
-#!
+#! /usr/bin/env guile
+
   bison-rpcalc example from (info bison 2.1.1) 
 
   2018 (c) Gunter Liszewski
@@ -9,6 +10,8 @@
    dynamo.iro.umontreal.ca/wiki/index.php/Lalr-example
 
 !#
+
+(use-modules (system base lalr))
 
 (define bison-rpcalc-parser
   (lalr-parser
@@ -58,3 +61,9 @@
     (newline)))
 
 ;;; --- control
+
+(define start
+  (lambda ()
+    (bison-rpcalc-parser (make-lexer e) e)))
+
+(start)
