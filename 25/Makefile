@@ -9,10 +9,10 @@ bison-rpcalc: bison-rpcalc.tab.o
 bison-rpcalc.tab.o: bison-rpcalc.tab.c
 	$(CC) -c $<
 
-bison-rpcalc.tab.c: bison-rpcalc.y
+bison-rpcalc.tab.c: bison-rpcalc.y
 	$(YACC) $<
 
 clean:
-	@rm -f bison-rpcalc.tab.c bison-rpcalc.o bison-rpcalc *.bak *~
+	@rm -f bison-rpcalc.tab.c bison-rpcalc.tab.o bison-rpcalc *.bak *~
 
 .PHONY: clean
