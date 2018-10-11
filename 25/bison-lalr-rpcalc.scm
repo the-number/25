@@ -1,40 +1,35 @@
 #!
+  bison-rpcalc example from (info bison) 2.1.1 
+
   2018 (c) Gunter Liszewski
 
-  info bison 2.1.1
-  calc-scm/calc.scm both as model for this
+  models for this, for example:
+   info bison 2.1.1
+   calc-scm/calc.scm
+   dynamo.iro.umontreal.ca/wiki/index.php/Lalr-example
 
 !#
-
-;;; bison-rpcalc
 
 (define bison-rpcalc-parser
   (lalr-parser
 
-
-;;; bison-rpcalc example from (info bison) 2.1.1 
-
-
 ;;; --- token
-(NUM)
+(NUM #{\xa;}# + - * / ^ n)
 
 ;;; --- grammar, semantics
 (<input>   ()
            (<input> <line>))
 
-(<line>    (#\newline)
-           (<exp> #\newline) : (format #t "~a~%" $1))
+(<line>    (#{\xa;}#)
+           (<exp> #{\xa;}#) : (format #t "~a~%" $1))
 
 (<exp>     (NUM)             : $1
-           (<exp> <exp> #\+) : (+ $1 $2)
-           (<exp> <exp> #\-) : (- $1 $2)
-           (<exp> <exp> #\*) : (* $1 $2)
-           (<exp> <exp> #\/) : (/ $1 $2)
-           (<exp> <exp> #\^) : (expt $1 $2)
-           (<exp> #\-)       : (- $1))
-
-
-))
+           (<exp> <exp> +) : (+ $1 $2)
+           (<exp> <exp> -) : (- $1 $2)
+           (<exp> <exp> *) : (* $1 $2)
+           (<exp> <exp> /) : (/ $1 $2)
+           (<exp> <exp> ^) : (expt $1 $2)
+           (<exp> -)       : (- $1))))
 
 ;;; Lexer
 
@@ -43,11 +38,12 @@
    (define (a b)
      (cond ((or (char=? b #\space) (char=? b #\tab))
             (a (read-char)))                     ; skip spaces
-           ((char-numeric? b)
+           ((or (char-numeric? b) (char=? b #\.))
             (unread-char b)
             (make-lexical-token 'NUM #f (read))) ; number
-           ((eof-object? b)
-            (make-lexical-token 0 #f #f))        ; eof
+           ((eof-object? b) '*eoi*)              ; eof
            (else
-            (make-lexical-token b #f #f))))       ; operator, with trust or hope
+            (make-lexical-token
+             (string->symbol (string b))
+             #f #f))))                           ; operator, with trust or hope
    (a (read-char))))
