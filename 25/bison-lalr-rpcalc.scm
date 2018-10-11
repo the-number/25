@@ -50,4 +50,11 @@
 
 ;;; --- errors
 
+(define e
+  (lambda (a . b)
+    (define c (lambda (a) (display a (current-error-port))))
+    (c a)
+    (for-each c b)
+    (newline)))
+
 ;;; --- control
