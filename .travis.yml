@@ -9,9 +9,6 @@ addons:
     - xsltproc
 script:
 - ./t/0001-who-is-this
-- ./t/0002-rubber-pdf-doc
-- ./t/0004-static-pages
-- rm -f doc/*.{aux,log,nav,out,snm,toc,bak}
 - ./t/0006-docs-deploy
 env:
   global:
@@ -22,7 +19,7 @@ deploy:
   keep-history: true
   target-branch: gh-pages
   on:
-    branch: feature/0006/static-pages
+    branch: feature/0003/static-pages
   verbose: true
   local-dir: ./docs/
   github-token:
