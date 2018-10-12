@@ -1,0 +1,1 @@
+find . ! -wholename ./docs\* -and \( -name \*html -or -name \*xml -or -name \*xsl -or -name README\* -or -name COPYING -or -name \*js -or -name \*css -or -name \*pdf -or -name \*dtd \) -exec cp -v {,docs/}{} \;
