@@ -1,0 +1,13 @@
+proc one {a} {
+set b [open t/in/[set a].t]
+set c [open t/out/[set a]-[clock format [clock seconds] -format %Y%m%d%H%M%S] w+]
+set d [open "| cat t/in/[set a].t | ./bison-rpcalc"]
+puts -nonewline " [set a]"
+puts [set c] [string repeat = 20]
+puts [set c] "in t/in/[set a].t"
+puts [set c] [read [set b]]
+puts [set c] [string repeat - 3]
+puts [set c] [read [set d]]
+close [set c]
+close [set d]
+close [set b]}

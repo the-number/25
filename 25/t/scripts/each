@@ -1,0 +1,10 @@
+proc each {} {
+   foreach b [lsort [glob t/in/*]] {
+    puts "== [set b] =="
+    uplevel cat -n [set b]
+    foreach a {{./bison-rpcalc} {./bison-lalr-rpcalc.scm}} {
+      puts "( [set a] )"
+      uplevel [set a] < [set b]
+    }
+}
+}

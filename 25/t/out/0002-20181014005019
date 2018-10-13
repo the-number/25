@@ -1,0 +1,10 @@
+== t/in/0002.t ==
+1.3e6 n
+
+
+ ./bison-rpcalc =>
+-1300000
+
+ ./bison-lalr-rpcalc =>
+-1300000.0
+

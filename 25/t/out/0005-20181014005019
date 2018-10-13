@@ -1,0 +1,10 @@
+== t/in/0005.t ==
+2 8.0 ^ 2 *
+
+
+ ./bison-rpcalc =>
+512
+
+ ./bison-lalr-rpcalc =>
+512.0
+
