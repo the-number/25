@@ -1,5 +1,5 @@
 #! /usr/bin/env guile
-  lambda-lalr
+  lambda-parser
   2018 (c) Gunter Liszewski
   Church, Curry, Kleene, ... expressive terms
 !#
@@ -15,13 +15,16 @@
 
 ;;; --- grammar
 
-(<\-term>)       (<variable>)
+(<\-term>        (<variable>)
                  (<application>)
-                 (<abstraction>)))
-(<variable>)     (*v)
-                 (*v *')))
-(<application>)  (*( <\-term> <\-term> *)))
-(<abstraction>)  (*(\ <variable> <\-term>)))
+                 (<abstraction>))
+
+(<variable>      (*v)
+                 (<variable> *'))
+
+(<application>   (*( <\-term> <\-term> *))
+
+(<abstraction>   (*(\ <variable> <\-term>))))
 
 ;;; --- lexer
 
@@ -35,15 +38,31 @@
              '*(\))                               ; (\
             ((char=? b #\()
               '*())                               ; (
-            ((and (char=? c #\') (char=? b #\v))
-             '#\'))                               ; prime
+            ((and (or (char=? c #\v) (char=? c #\'))
+                  (char=? b #\'))
+             '#\')                                ; prime
             ((char=? b #\v)
              '*v)                                 ; v
             ((char=? b #\))
              '*))                                 ; )
+           (else
+             (string->symbol (string b)))))
     (a (read-char) #\space)))
 
 ;;; --- errors
 
+(define e
+  (lambda (a . b)
+    (define c (lambda (a) (display a (current-error-port))))
+    (c a)
+    (for-each c b)
+    (newline)))
+
 ;;; --- control
+
+(define start
+  (lambda ()
+    (\-term-parser (make-lexer e) e)))
+
+(start)
 
