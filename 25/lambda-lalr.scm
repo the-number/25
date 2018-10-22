@@ -25,3 +25,25 @@
 
 ;;; --- lexer
 
+(define make-lexer e)
+  (lambda ()
+    (define (a b c)
+      (cond ((eof-object? b) '*eoi*)              ; eof
+            ((or (char=? b #\space) (char=? b #\tab))
+             (a (read-char) b))                   ; skip space
+            ((and (char=? c #\() (char=? b #\\)
+             '*(\))                               ; (\
+            ((char=? b #\()
+              '*())                               ; (
+            ((and (char=? c #\') (char=? b #\v))
+             '#\'))                               ; prime
+            ((char=? b #\v)
+             '*v)                                 ; v
+            ((char=? b #\))
+             '*))                                 ; )
+    (a (read-char) #\space)))
+
+;;; --- errors
+
+;;; --- control
+
