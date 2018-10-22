@@ -1,7 +1,11 @@
 #! /usr/bin/env guile
-  lambda-parser
+
+  lambda-lalr
+
   2018 (c) Gunter Liszewski
-  Church, Curry, Kleene, ... expressive terms
+
+  comprehension of these
+    Church, Curry, Kleene, ... expressive terms
 !#
 
 (use-modules (system base lalr))
@@ -11,7 +15,7 @@
 
 ;;; --- token
 
-(*( *) *(\ *v *')
+(*left *right *lambda *v *prime)
 
 ;;; --- grammar
 
@@ -20,11 +24,11 @@
                  (<abstraction>))
 
 (<variable>      (*v)
-                 (<variable> *'))
+                 (<variable> *prime))
 
-(<application>   (*( <\-term> <\-term> *))
+(<application>   (*left <\-term> <\-term> *right)
 
-(<abstraction>   (*(\ <variable> <\-term>))))
+(<abstraction>   (*lambda <variable> <\-term> *right))))
 
 ;;; --- lexer
 
@@ -35,16 +39,16 @@
             ((or (char=? b #\space) (char=? b #\tab))
              (a (read-char) b))                   ; skip space
             ((and (char=? c #\() (char=? b #\\)
-             '*(\))                               ; (\
+             '*lambda))                           ; (\
             ((char=? b #\()
-              '*())                               ; (
+              '*left)                             ; (
             ((and (or (char=? c #\v) (char=? c #\'))
                   (char=? b #\'))
-             '#\')                                ; prime
+             '*prime)                             ; '
             ((char=? b #\v)
              '*v)                                 ; v
             ((char=? b #\))
-             '*))                                 ; )
+             '*right)                             ; )
            (else
              (string->symbol (string b)))))
     (a (read-char) #\space)))
