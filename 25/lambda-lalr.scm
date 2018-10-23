@@ -32,13 +32,13 @@
 (<variable>      (*v)
                  (<variable> *prime))
 
-(<application>   (*left <term> <term> *right)
+(<application>   (*left <term> <term> *right))
 
 (<abstraction>   (*lambda <variable> <term> *right))))
 
 ;;; --- lexer
 
-(define make-lexer e)
+(define (make-lexer e)
   (lambda ()
     (define (a b c)
       (cond ((eof-object? b) '*eoi*)              ; eof
@@ -72,7 +72,7 @@
 
 (define start
   (lambda ()
-    (term-parser (make-lexer e) e)))
+    (lambda-parser (make-lexer e) e)))
 
 (start)
 
