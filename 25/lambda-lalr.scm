@@ -34,7 +34,7 @@
 
 (<application>   (*left <term> <term> *right))
 
-(<abstraction>   (*lambda <variable> <term> *right))))
+(<abstraction>   (*left *lambda <variable> <term> *right))))
 
 ;;; --- lexer
 
