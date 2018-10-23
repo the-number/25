@@ -23,18 +23,18 @@
                  (<input> <line>))
 
 (<line>          (#{\xa;}#)
-                 (<\-term> #{\xa;}#) : (format #t "~a~%" "ok"))
+                 (<term> #{\xa;}#) : (format #t "~a~%" "ok"))
 
-(<\-term>        (<variable>)
+(<term>        (<variable>)
                  (<application>)
                  (<abstraction>))
 
 (<variable>      (*v)
                  (<variable> *prime))
 
-(<application>   (*left <\-term> <\-term> *right)
+(<application>   (*left <term> <term> *right)
 
-(<abstraction>   (*lambda <variable> <\-term> *right))))
+(<abstraction>   (*lambda <variable> <term> *right))))
 
 ;;; --- lexer
 
@@ -72,7 +72,7 @@
 
 (define start
   (lambda ()
-    (\-term-parser (make-lexer e) e)))
+    (term-parser (make-lexer e) e)))
 
 (start)
 
