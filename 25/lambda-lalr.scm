@@ -74,6 +74,7 @@
 
 (define start
   (lambda ()
+    (drain-input (current-input-port))
     (lambda-parser (make-lexer e) e)))
 
 (start)
