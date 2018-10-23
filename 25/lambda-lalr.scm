@@ -25,7 +25,7 @@
 (<line>          (#{\xa;}#)
                  (<term> #{\xa;}#) : (format #t "~a~%" "ok"))
 
-(<term>        (<variable>)
+(<term>          (<variable>)
                  (<application>)
                  (<abstraction>))
 
@@ -44,12 +44,11 @@
       (cond ((eof-object? b) '*eoi*)              ; eof
             ((or (char=? b #\space) (char=? b #\tab))
              (a (read-char) b))                   ; skip space
-            ((and (char=? c #\() (char=? b #\\)
-             '*lambda))                           ; (\
+            ((char=? b #\\)
+             '*lambda)                            ; \
             ((char=? b #\()
               '*left)                             ; (
-            ((and (or (char=? c #\v) (char=? c #\'))
-                  (char=? b #\'))
+            ((char=? b #\')
              '*prime)                             ; '
             ((char=? b #\v)
              '*v)                                 ; v
