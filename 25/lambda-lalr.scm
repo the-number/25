@@ -15,9 +15,15 @@
 
 ;;; --- token
 
-(*left *right *lambda *v *prime)
+(#{\xa;}# *left *right *lambda *v *prime)
 
 ;;; --- grammar
+
+(<input>         ()
+                 (<input> <line>))
+
+(<line>          (#{\xa;}#)
+                 (<\-term> #{\xa;}#) : (format #t "~a~%" "ok"))
 
 (<\-term>        (<variable>)
                  (<application>)
