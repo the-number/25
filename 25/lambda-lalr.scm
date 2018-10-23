@@ -54,8 +54,11 @@
              '*v)                                 ; v
             ((char=? b #\))
              '*right)                             ; )
-           (else
-             (string->symbol (string b)))))
+            ((char=? b #\newline)
+             '#{\xa;}#)                           ; new line
+            (else
+             (e "SCAN error : " b)
+	     (a (read-char) #\space))))
     (a (read-char) #\space)))
 
 ;;; --- errors
@@ -71,9 +74,7 @@
 
 (define start
   (lambda ()
-    (call-with-current-continuation
-     (lambda (a)
-      (lambda-parser (make-lexer e) e)))))
+    (lambda-parser (make-lexer e) e)))
 
 (start)
 
