@@ -71,7 +71,9 @@
 
 (define start
   (lambda ()
-    (lambda-parser (make-lexer e) e)))
+    (call-with-current-continuation
+     (lambda (a)
+      (lambda-parser (make-lexer e) e)))))
 
 (start)
 
