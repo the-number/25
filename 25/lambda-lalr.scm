@@ -23,7 +23,8 @@
                  (<input> <line>))
 
 (<line>          (#{\xa;}#)
-                 (<term> #{\xa;}#) : (format #t "~a~%" "ok"))
+                 (<term> #{\xa;}#) : (format #t "~a~%" "ok")
+                 (error #{\xa;}#)   : (list 'recover $1 $2))
 
 (<term>          (<variable>)
                  (<application>)
