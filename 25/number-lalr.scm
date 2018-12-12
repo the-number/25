@@ -37,7 +37,7 @@
     (define (a b c)
       (cond ((eof-object? b) '*eoi*)              ; eof
             ((or (char=? b #\space) (char=? b #\tab))
-             (a (read-char) b))                   ; skip space
+             '*space)                             ; space
             ((char=? b #\0)
              '*0)                                 ; 0
             ((char=? b #\1)
