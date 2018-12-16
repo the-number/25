@@ -1,6 +1,6 @@
 #! /usr/bin/env guile
 
-  number-lalr
+  number+lalr
 
   2018 (c) Gunter Liszewski
 
@@ -23,12 +23,12 @@
                  (<input> <line>))
 
 (<line>          (#{\xa;}#)
-                 (<nu> #{\xa;}#)   : (format #t "~a~%" "ok")
+                 (<nu> #{\xa;}#)   : (format #t "~a~%" $1)
                  (error #{\xa;}#)  : (list 'recover $1 $2))
 
-(<nu>            (*1)
-                 (<nu> *0)
-                 (<nu> *1))))
+(<nu>            (*1)              : 1
+                 (<nu> *0)         : (* 2 $1)
+                 (<nu> *1)         : (+ (* 2 $1) 1))))
 
 ;;; --- lexer
 
